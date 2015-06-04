@@ -1,9 +1,6 @@
 <?php
 /**
  * Plugin plxMyFindUser
- *
- * @version	1.0
- * @date	28/03/2012
  * @author	Stephane F
  **/
 class plxMyFindUser extends plxPlugin {
@@ -17,17 +14,17 @@ class plxMyFindUser extends plxPlugin {
 	 **/
 	public function __construct($default_lang) {
 
-        # appel du constructeur de la classe plxPlugin (obligatoire)
-        parent::__construct($default_lang);
+		# appel du constructeur de la classe plxPlugin (obligatoire)
+		parent::__construct($default_lang);
 
 		# droits pour accèder à la page config.php du plugin
 		$this->setConfigProfil(PROFIL_ADMIN);
 
-        # déclaration des hooks
+		# déclaration des hooks
 		$this->addHook('AdminTopEndHead', 'AdminTopEndHead');
 		$this->addHook('AdminUsersTop', 'AdminUsersTop');
-        $this->addHook('AdminUsersFoot', 'AdminUsersFoot');
-    }
+		$this->addHook('AdminUsersFoot', 'AdminUsersFoot');
+	}
 
 	/**
 	 * Méthode de traitement du hook AdminTopEndHead
@@ -35,9 +32,9 @@ class plxMyFindUser extends plxPlugin {
 	 * @return	stdio
 	 * @author	Stephane F
 	 **/
-    public function AdminTopEndHead() {?>
+	public function AdminTopEndHead() {?>
 
-	
+
 	<script type="text/javascript">
 	/* <![CDATA[ */
 	if (typeof jQuery == 'undefined') {
@@ -55,7 +52,7 @@ class plxMyFindUser extends plxPlugin {
 	 * @return	stdio
 	 * @author	Stephane F
 	 **/
-    public function AdminUsersTop() {?>
+	public function AdminUsersTop() {?>
 
 <p style="text-align:right">
 	<?php $this->lang('L_LABEL_FIND') ?>&nbsp;:&nbsp;
@@ -72,7 +69,7 @@ class plxMyFindUser extends plxPlugin {
 	 * @return	stdio
 	 * @author	Stephane F
 	 **/
-    public function AdminUsersFoot() {?>
+	public function AdminUsersFoot() {?>
 
 <script type="text/javascript">
 /* <![CDATA[ */
@@ -82,8 +79,8 @@ $(document).ready(function(){
 		$('#txtFilter').val("").keyup();
 		$('#imgDeleteFilter').hide();
 	});
-	$('.table>tbody>tr:has(td)').each(function(){
-		// recuperation des valeurs des colonnes
+	$('#users-table>tbody>tr:has(td)').each(function(){
+		// récupération des valeurs des colonnes
 		var userid = $(this).find("td:eq(1)").text().toLowerCase();
 		var username = $(this).find("td:eq(2) :input[type='text']").val().toLowerCase();
 		var login = $(this).find("td:eq(3) :input[type='text']").val().toLowerCase();
@@ -94,9 +91,9 @@ $(document).ready(function(){
 		$('#imgDeleteFilter').show();
 		var s = $(this).val().toLowerCase().split(" ");
 		//show all rows.
-		$('.table>tbody>tr:hidden').show();
+		$('#users-table>tbody>tr:hidden').show();
 		$.each(s, function(){
-			$(".table>tbody>tr:visible>.indexColumn:not(:contains('" + this + "'))").parent().hide();
+			$("#users-table>tbody>tr:visible>.indexColumn:not(:contains('" + this + "'))").parent().hide();
 		});
 	});
 });
@@ -104,7 +101,7 @@ $(document).ready(function(){
 </script>
 
 	<?php
-    }
+	}
 
 
 }
